@@ -6,6 +6,20 @@ namespace Xamarin.Forms.Core
 {
 	public partial class CoreStyles
 	{
+        public static Style GoogleLogin { get; } = new Style(typeof(CoreButton))
+        {
+            Setters =
+            {
+            new Setter(){Property=CoreButton.StartColorProperty ,Value=Color.FromHex("#fff")},
+                new Setter(){Property=CoreButton.EndColorProperty ,Value=Color.FromHex("#fff")},
+                new Setter(){Property=CoreButton.ShadowColorProperty ,Value=Color.Gray},
+                new Setter(){Property=CoreButton.TextColorProperty ,Value=Color.FromHex("#757575")},
+                new Setter(){Property=CoreButton.ShadowOffsetProperty ,Value=1},
+                new Setter(){Property=CoreButton.ShadowOpacityProperty ,Value=1},
+                new Setter(){Property=CoreButton.ShadowRadiusProperty ,Value= CoreSettings.On<float>(6f,10f,6f)},
+                new Setter(){Property=CoreButton.CornerRadiusProperty ,Value= CoreSettings.On<float>(6f,10f,6f)},
+            }
+        };
         public static Style LightOrange { get; } = new Style(typeof(CoreButton))
         {
             Setters =

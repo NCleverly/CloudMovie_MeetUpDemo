@@ -4,6 +4,7 @@ using System.Windows.Input;
 using CloudMovie.Mobile.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Core;
+using Xamarin.Essentials;
 
 namespace CloudMovie.Mobile
 {
@@ -13,6 +14,10 @@ namespace CloudMovie.Mobile
         public int TotalItems { get; set; }
         public ICommand SomeAction { get; set; }
         public ICommand SeeFontAction { get; set; }
+        public ICommand GoogleLoginAction { get; set; }
+        public ICommand MicrosoftLoginAction { get; set; }
+
+        public string AccountToken { get; set; }
 
         public SomeViewModel()
         {
@@ -25,6 +30,22 @@ namespace CloudMovie.Mobile
             });
             SeeFontAction = new Command(async() => {
                 await Navigation.PushAsync(new FontDemo());
+            });
+            GoogleLoginAction = new CoreCommand(async (obj) =>
+            {
+                var authResult = await WebAuthenticator.AuthenticateAsync(
+                    new Uri("https://cloudmovieweb.azurewebsites.net/mobileauth/Google"),
+                    new Uri("cloudmovie.mobile://"));
+
+                AccountToken = authResult?.AccessToken;
+            });
+            MicrosoftLoginAction = new CoreCommand(async (obj) =>
+            {
+                var authResult = await WebAuthenticator.AuthenticateAsync(
+                    new Uri("https://cloudmovieweb.azurewebsites.net/mobileauth/Microsoft"),
+                    new Uri("cloudmovie.mobile://"));
+
+                AccountToken = authResult?.AccessToken;
             });
         }
 
@@ -48,6 +69,7 @@ namespace CloudMovie.Mobile
                     Message = items.error.Message
                 });
             }
+            
         }
 
         public override void OnRelease(bool includeEvents)
