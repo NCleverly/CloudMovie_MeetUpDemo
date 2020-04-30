@@ -39,6 +39,13 @@ namespace CloudMovie.Mobile
                                 Margin = 5,
                             }.Bind(Button.CommandProperty, nameof(SomeViewModel.MicrosoftLoginAction))
                             .Col(1),
+                            new CoreButton()
+                            {
+                                Text = "Custom Login",
+                                Style = CoreStyles.LightOrange,
+                                Margin = 5,
+                            }.Bind(Button.CommandProperty, nameof(SomeViewModel.MicrosoftLoginAction))
+                            .Col(1),
                         }
                     },
                     new ScrollView{  Content = new StackLayout()
