@@ -40,11 +40,12 @@ namespace CloudMovie.Web
             {
                 // Get parameters to send back to the callback
                 var qs = new Dictionary<string, string>
-            {
-                { "access_token", await _helper.GenerateToken(auth) },
-                { "refresh_token", auth.Properties.GetTokenValue("refresh_token") ?? string.Empty },
-                { "expires", (auth.Properties.ExpiresUtc?.ToUnixTimeSeconds() ?? -1).ToString() }
-            };
+                {
+                    { "access_token", await _helper.GenerateToken(auth) },
+                    { "refresh_token", auth.Properties.GetTokenValue("refresh_token") ?? string.Empty },
+                    { "expires", (auth.Properties.ExpiresUtc?.ToUnixTimeSeconds() ?? -1).ToString() }
+                };
+
                 // Build the result url
                 var url = callbackScheme + "://#" + string.Join(
                     "&",
