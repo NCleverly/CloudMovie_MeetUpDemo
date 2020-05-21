@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CloudMovie.Web.Helper;
+using CloudMovie.Web.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +31,8 @@ namespace CloudMovie.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<IKeyVaultService, KeyVaultService>();
+            services.AddScoped<JWTHelper>();
 
             services.AddAuthentication(o =>
             {
